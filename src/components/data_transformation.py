@@ -2,7 +2,7 @@
 import os
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler,OneHotEncoder
-from  sklearn.impute import SimpleImputer
+from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 import pandas as pd
 import numpy as np
@@ -10,19 +10,21 @@ from src.utilis import save_object
 from src.exception import customException
 from src.logger import logging
 import sys
+from dataclasses import dataclass
 
-
+@dataclass
 class Data_transformationConfig:
     path=os.path.join('Artifacts','preprocessor.pkl')
 
 class Dat_transformation:
     def __init__(self):
-        self.data_transformation_config=Data_transformationConfig
+        self.data_transformation_config=Data_transformationConfig()
 
 
     def data_transformation_object(self):
-
-        num_features=['year', 'km_driven', 'mileage', 'engine', 'max_power',
+        
+        
+        num_features=['year','name' ,'km_driven', 'mileage', 'engine', 'max_power',
                      'seats', 'torque_only']
         
         cat_features=['fuel', 'seller_type', 'transmission', 'owner']
@@ -68,15 +70,27 @@ class Dat_transformation:
 
             test_array=preprocessor_obj.transform(input_feature_test_df)
 
-            train_ar=np.c_[train_array,np.array(target_train_df)]
-            test_ar=np.c_[test_array,np.array(target_test_df)]
+            x_train=train_array
+            x_test=test_array
+            y_train=np.array(target_train_df)
+            y_test=np.array(target_test_df)
+
+            print(x_train)
+
 
             logging.info("save object started")
 
-            save_object(file_path=self.data_transformation_config.path,obj=self.data_transformation_config)
+            save_object(
+                file_path=self.data_transformation_config.path,
+                obj=preprocessor_obj)
+            
+            print(preprocessor_obj)
+            
 
         
-            return(
-            train_ar,test_ar)
+            return(x_train,
+                   x_test,
+                   y_train,
+                   y_test)
         except Exception as e:
             raise customException(e,sys)

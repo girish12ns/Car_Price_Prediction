@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555555;
+        }
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            background-color: #f9f9f9;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Details Form</h1>
+        <form action="{{ url_for('predict_data') }}" method="post">
+            <label for="name">Name:</label>
+            <select id="name" name="name">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <!-- Add more options for categories... -->
+            </select>
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year" required>
+            <label for="km_driven">Kilometers Driven:</label>
+            <input type="text" id="km_driven" name="km_driven" required>
+            <label for="fuel">Fuel Type:</label>
+            <select id="fuel" name="fuel">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="LPG">LPG</option>
+            </select>
+            <label for="seller_type">Seller Type:</label>
+            <select id="seller_type" name="seller_type">
+                <option value="Individual">Individual</option>
+                <option value="Dealer">Dealer</option>
+                <option value="Trustmark Dealer">Trustmark Dealer</option>
+            </select>
+            <label for="transmission">Transmission:</label>
+            <select id="transmission" name="transmission">
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+            <label for="owner">Owner:</label>
+            <select id="owner" name="owner">
+                <option value="First Owner">First Owner</option>
+                <option value="Second Owner">Second Owner</option>
+                <option value="Third Owner">Third Owner</option>
+                <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+            </select>
+            <label for="mileage">Mileage:</label>
+            <input type="text" id="mileage" name="mileage" required>
+            <label for="engine">Engine Capacity:</label>
+            <input type="text" id="engine" name="engine" required>
+            <label for="max_power">Max Power:</label>
+            <input type="text" id="max_power" name="max_power" required>
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" name="seats" required>
+            <label for="torque_only">Torque Only:</label>
+            <input type="text" id="torque_only" name="torque_only" required>
+            <button type="submit">Predict Price</button>
+        </form>
+        <h2>
+           THE  prediction is {{results}}
+        </h2>
+    </div>
+</body>
+</html>
+
+
+

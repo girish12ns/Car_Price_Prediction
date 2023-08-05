@@ -7,8 +7,10 @@ import os
 import pandas as pd
 import sys
 from src.components.data_transformation import Dat_transformation
+from src.components.model_trainer import Model_Trainer
+from dataclasses import dataclass
 
-
+@dataclass
 class DataingestionConfig:
     train_path=os.path.join("Artifacts",'train.csv')
     test_path=os.path.join('Artifacts','test.csv')
@@ -21,7 +23,7 @@ class Data_ingestion:
 
     def data_ingestion_intiated(self):
         try:
-            car_df=pd.read_csv('data\Cleaned_dataset.csv')
+            car_df=pd.read_csv('NOTE BOOK\data\Cleaned_dataset.csv')
 
 
             os.makedirs(os.path.dirname(self.data_ingestion_config.raw_data_path),exist_ok=True)
@@ -45,4 +47,7 @@ if __name__=="__main__":
     train_set,test_set=data.data_ingestion_intiated()
 
     transfomation=Dat_transformation()
-    train_ar,test_ar=transfomation.data_transformation_iniated(train_set,train_set)
+    x_train,x_test,y_train,y_test=transfomation.data_transformation_iniated(train_set,train_set)
+
+    Trainer=Model_Trainer()
+    Trainer.Model_trainer_object(x_train,x_test,y_train,y_test)
