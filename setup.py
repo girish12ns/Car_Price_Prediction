@@ -1,7 +1,7 @@
 from setuptools import find_packages,setup
 
 constant="-e ."
-def get_tools(file_path:str)->list[str]:
+def get_tools(file_path:str)->list:
 
 
 
@@ -26,7 +26,4 @@ setup(
     author_email='girish12n@gmail.com',
     packages=find_packages(),
     install_packages=get_tools('requirements.txt')
-
-
-
-)
+    )
